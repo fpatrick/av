@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 #eu add dentro dos []
-ALLOWED_HOSTS = ['aboutv.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['aboutv.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
