@@ -1,6 +1,6 @@
 from django.contrib import admin
 # Eu add abaixo
-from .models import Post
+from .models import Post, Comment
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -17,3 +17,16 @@ class PostAdmin(SummernoteModelAdmin):
     summernote_fields = ('content')
 
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'body', 'post', 'created_on', 'approved')
+    list_filter = ('approved', 'created_on')
+    search_fields = ['name', 'email', 'body']
+    actions = ['disable_comments', 'enable_comments']
+
+    def disable_comments(self, request, queryset):
+        queryset.update(approved=False)
+
+    def enable_comments(self, request, queryset):
+        queryset.update(approved=True)
