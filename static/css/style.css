@@ -1,6 +1,27 @@
 .limit-chars {
-    height: 13ch;
+    height: 15ch;
     overflow: hidden;
     /*white-space: nowrap;*/
     /*text-overflow: ellipsis;*/
+}
+
+.red-like {
+    color: rgba(255, 65, 87, 0.5)
+}
+
+.green-author {
+    color: rgba(121, 121, 121, 0.5);
+}
+
+.blue-date {
+    color: rgba(108, 153, 187, 0.5);
+}
+
+.btn-p {
+    color: white;
+    background-color: rgb(142, 142, 147, 0.9);
+}
+.btn-p:hover{
+    color: white;
+    background-color: rgb(44, 44, 46);
 }
