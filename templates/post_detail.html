@@ -33,12 +33,13 @@
 
                     <div class="col-1">
                         <!-- The number of likes goes before the closing strong tag -->
-                        <strong class="text-secondary"><i class="far fa-heart"></i> </strong>
+                        <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_likes }} </strong>
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
                         <strong class="text-secondary"><i class="far fa-comments"></i>
                             <!-- Our total_comments variable goes before the closing strong tag -->
+                            {{ total_comments }}
                         </strong>
                         {% endwith %}
                     </div>
@@ -52,7 +53,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
+        <div class="col-md-7 card mb-4  mt-3 ">
             <h3>Comments:</h3>
             <div class="card-body">
                 <!-- We want a for loop inside the tags to iterate through each comment in comments -->
@@ -73,14 +74,20 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-md-4 card mb-4  mt-3 ">
+        <div class="col-md-4 offset-md-1 card mb-4  mt-3 ">
             <div class="card-body">
+                {% if commented %}
+                    <div class="alert alert-success" role="alert">
+                        Your comment was published successfully!
+                    </div>
+                {% endif %}
                 {% if user.is_authenticated %}
                 <h3>Leave a comment:</h3>
                 <p>Posting as: {{ user.username }}</p>
                 <form method="post" style="margin-top: 1.3em;">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
+                    <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
                 {% endif %}
