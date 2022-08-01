@@ -23,7 +23,7 @@ class PostAdmin(SummernoteModelAdmin):
         if request.user.is_superuser:
             return qs
         else:
-            self.exclude = ('author','likes', 'excerpt')
+            self.exclude = ('likes', 'excerpt')
             return qs.filter(author=request.user)
 
 
