@@ -16,6 +16,16 @@ class PostAdmin(SummernoteModelAdmin):
     search_fields = ['title', 'content']
     summernote_fields = ('content')
 
+    exclude = ('',)
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        else:
+            self.exclude = ('author','likes', 'excerpt')
+            return qs.filter(author=request.user)
+
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
@@ -24,6 +34,18 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('approved', 'created_on')
     search_fields = ['name', 'email', 'body']
     actions = ['disable_comments', 'enable_comments']
+
+    exclude = ('',)
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        else:
+            self.exclude = ('approved','post')
+            return qs.filter(name=request.user)
+
+
 
     def disable_comments(self, request, queryset):
         queryset.update(approved=False)
