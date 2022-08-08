@@ -15,16 +15,22 @@ class PostAdmin(SummernoteModelAdmin):
     list_display = ('title', 'slug', 'status', 'created_on')
     search_fields = ['title', 'content']
     summernote_fields = ('content')
-
     exclude = ('',)
 
+    # Save as logged author instead of user input
+    def save_model(self, request, obj, form, change):
+        obj.author = request.user
+        super().save_model(request, obj, form, change)
+
     def get_queryset(self, request):
+        logged_user = request.user
+
         qs = super().get_queryset(request)
-        if request.user.is_superuser:
+        if logged_user.is_superuser:
             return qs
         else:
             self.exclude = ('likes', 'excerpt')
-            return qs.filter(author=request.user)
+            return qs.filter(author=logged_user)
 
 
 @admin.register(Comment)
