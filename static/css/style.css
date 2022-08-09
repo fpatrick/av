@@ -25,3 +25,9 @@
     color: white;
     background-color: rgb(44, 44, 46);
 }
+
+.post-img {
+    width: auto;
+    max-height: 450px;
+    border-radius: 5%;
+}

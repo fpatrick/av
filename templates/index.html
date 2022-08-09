@@ -7,7 +7,7 @@
         <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '';">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active "><span class="h4">Most Liked Posts /</span></li>
-                <li class="breadcrumb-item"  aria-current="page"><a class="h4 href="#">Newest Posts</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a class="h4 href=" #">Newest Posts</a></li>
             </ol>
         </nav>
     </header>
@@ -19,12 +19,18 @@
                     {% for post in post_list %}
                     <div class="card bg-light mb-3 text-center">
                         <div class="row g-0">
-                            <div class="col-md-4 mt-5">
-                                <img width="100%" height="10%"
-                                     src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
-                                     class="img-fluid rounded" alt="...">
+                            <div class="col-md-5 mt-4">
+                                <div class="image-container">
+                                    {% if "placeholder" in post.featured_image.url %}
+                                    <img class="rounded card-img-top"
+                                         src="https://media.istockphoto.com/photos/back-view-photo-of-professional-female-hacker-picture-id1015143300?k=20&m=1015143300&s=612x612&w=0&h=6wp5IHqUO599BpsTTzYtNOt-NMmc1jbo6IzG7QFYA_0=">
+                                    {% else %}
+                                    <img class="rounded card-img-top" src=" {{ post.featured_image.url }}">
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="col-md-8">
+                            {{ post.secure_url }}
+                            <div class="col-md-7">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ post.title }}</h5>
                                     <p class="card-text"><small>
@@ -49,9 +55,9 @@
 
                 </div>
             </div>
-        <!-- End of row -->
+            <!-- End of row -->
         </div>
-    <!-- End of Container fluid -->
+        <!-- End of Container fluid -->
     </div>
     {% if is_paginated %}
     <nav aria-label="Page navigation">
