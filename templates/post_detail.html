@@ -9,22 +9,48 @@
             <div class="row">
 
                 <div class="col-8 offset-2">
-                   <div class="container-fluid">
+                    <div class="container-fluid">
                         <br>
-                       <div class="image-container">
-                                    {% if "placeholder" in post.featured_image.url %}
-                                    <img class="d-block post-img mx-auto img-thumbnail card-img-top"
-                                         src="https://cdn.windowsreport.com/wp-content/uploads/2020/12/Programming-101.jpg">
+                        <div class="image-container">
+                            {% if "placeholder" in post.featured_image.url %}
+                            <img class="d-block post-img mx-auto img-thumbnail card-img-top"
+                                 src="https://cdn.windowsreport.com/wp-content/uploads/2020/12/Programming-101.jpg">
+                            {% else %}
+                            <img class="d-block post-img mx-auto img-thumbnail card-img-top"
+                                 src=" {{ post.featured_image.url }}">
+                            {% endif %}
+                        </div>
+                        <br>
+                        <h1 class="display-4">{{ post.title }} </h1>
+
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">Author: {{ post.author }}</small>
+                            <strong>
+                                {% if user.is_authenticated %}
+                                <form class="d-inline" action="{% url 'post_like' post.slug %}" method="post">
+                                    {% csrf_token %}
+                                    {% if liked %}
+                                    <button type="submit" name="btn_like" value="{{post.slug}}" class="">
+                                        <p>You liked this post</p>
+                                        <i class="fas fa-heart fa-2xl"></i>
+                                    </button>
                                     {% else %}
-                                    <img class="d-block post-img mx-auto img-thumbnail card-img-top" src=" {{ post.featured_image.url }}">
+                                    <button type="submit" name="btn_like" value="{{post.slug}}" class="">
+                                        <p>Click to like</p>
+                                        <i class="far fa-heart fa-2xl"></i>
+                                    </button>
                                     {% endif %}
-                                </div>
-                       <br>
-                    <h1 class="display-4">{{ post.title }}</h1>
-                    <small class="text-muted">Author: {{ post.author }}</small>
-                    <p class="text-info"> {{ post.keywords }}</p>
-                    <p> {{ post.content | safe }} </p>
-                   </div>
+                                </form>
+                                {% else %}
+                                Login to like
+                                <span class="text-secondary"><i class="far fa-heart fa-2xl"></i></span>
+                                {% endif %}
+                            </strong>
+
+                        </div>
+                        <p class="text-info"> {{ post.keywords }}</p>
+                        <p> {{ post.content | safe }} </p>
+                    </div>
 
                 </div>
             </div>
@@ -86,7 +112,13 @@
     </div>
     <div class="row">
         <div class="col-md-7 card mb-4  mt-3 ">
-            <h3>Comments:</h3>
+            <h3>
+                {% with comments.count as total_comments %}
+                <!-- Our total_comments variable goes before the closing strong tag -->
+                {{ total_comments }}
+                {% endwith %}
+                Comments:
+            </h3>
             <div class="card-body">
                 <!-- We want a for loop inside the tags to iterate through each comment in comments -->
                 {% for comment in comments %}
@@ -109,9 +141,9 @@
         <div class="col-md-4 offset-md-1 card mb-4  mt-3 ">
             <div class="card-body">
                 {% if commented %}
-                    <div class="alert alert-success" role="alert">
-                        Your comment was published successfully!
-                    </div>
+                <div class="alert alert-success" role="alert">
+                    Your comment was published successfully!
+                </div>
                 {% endif %}
                 {% if user.is_authenticated %}
                 <h3>Leave a comment:</h3>

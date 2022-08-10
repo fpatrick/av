@@ -31,3 +31,8 @@
     max-height: 450px;
     border-radius: 4%;
 }
+
+.like {
+    height: 100px;
+    width: auto;
+}
