@@ -48,8 +48,11 @@
                             </strong>
 
                         </div>
-                        <p class="text-info"> {{ post.keywords }}</p>
-                        <p> {{ post.content | safe }} </p>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-info"> {{ post.keywords }}</p>
+                            <span class="red-like">{{ post.number_of_likes }} Likes</span>
+                        </div>
+                        <span> {{ post.content | safe }} </span>
                         <br><br>
                         <div class="d-flex justify-content-between">
                             <small class="text-muted">Author: {{ post.author }}</small>
