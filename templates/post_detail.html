@@ -8,7 +8,7 @@
         <div class="d-flex align-items-center justify-content-center">
             <div class="row">
 
-                <div class="col-8 offset-2">
+                <div class="col-md-8 col-sm-12 offset-md-2">
                     <div class="container-fluid">
                         <br>
                         <div class="image-container">
@@ -112,7 +112,8 @@
     </div>
     <div class="row">
         <div class="col-md-7 card mb-4  mt-3 ">
-            <h3>
+            <h3 class="mt-3">
+                <i class="far fa-comments"></i>
                 {% with comments.count as total_comments %}
                 <!-- Our total_comments variable goes before the closing strong tag -->
                 {{ total_comments }}
