@@ -31,3 +31,7 @@
     max-height: 450px;
     border-radius: 4%;
 }
+
+.wide {
+    width: auto;
+}
