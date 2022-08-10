@@ -50,6 +50,32 @@
                         </div>
                         <p class="text-info"> {{ post.keywords }}</p>
                         <p> {{ post.content | safe }} </p>
+                        <br><br>
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">Author: {{ post.author }}</small>
+                            <strong>
+                                {% if user.is_authenticated %}
+                                <form class="d-inline" action="{% url 'post_like' post.slug %}" method="post">
+                                    {% csrf_token %}
+                                    {% if liked %}
+                                    <button type="submit" name="btn_like" value="{{post.slug}}" class="">
+                                        <p>You liked this post</p>
+                                        <i class="fas fa-heart fa-2xl"></i>
+                                    </button>
+                                    {% else %}
+                                    <button type="submit" name="btn_like" value="{{post.slug}}" class="">
+                                        <p>Click to like</p>
+                                        <i class="far fa-heart fa-2xl"></i>
+                                    </button>
+                                    {% endif %}
+                                </form>
+                                {% else %}
+                                Login to like
+                                <span class="text-secondary"><i class="far fa-heart fa-2xl"></i></span>
+                                {% endif %}
+                            </strong>
+
+                        </div>
                     </div>
 
                 </div>
@@ -58,58 +84,15 @@
     </div>
 </div>
 
-
 <div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
-            <div class="card-body">
-                <!-- The post content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text "></p>
-                <div class="row">
 
-                    <div class="col-1">
-                        <strong>
-                            {% if user.is_authenticated %}
-                            <form class="d-inline" action="{% url 'post_like' post.slug %}" method="post">
-                                {% csrf_token %}
-                                {% if liked %}
-                                <button type="submit" name="btn_like" value="{{post.slug}}" class="">
-                                    <p>likou</p>
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                {% else %}
-                                <button type="submit" name="btn_like" value="{{post.slug}}" class="">
-                                    <p>naaolikou</p>
-                                    <i class="far fa-heart"></i>
-                                </button>
-                                {% endif %}
-                            </form>
-                            {% else %}
-                            Login to like
-                            <span class="text-secondary"><i class="far fa-heart"></i></span>
-                            {% endif %}
-                        </strong>
-                        <!-- The number of likes goes before the closing strong tag -->
-                        <span class="text-secondary"> {{ post.number_of_likes }} </span>
-                    </div>
-                    <div class="col-1">
-                        {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="far fa-comments"></i>
-                            <!-- Our total_comments variable goes before the closing strong tag -->
-                            {{ total_comments }}
-                        </strong>
-                        {% endwith %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col">
             <hr>
         </div>
+
     </div>
+    <br><br>
     <div class="row">
         <div class="col-md-7 card mb-4  mt-3 ">
             <h3 class="mt-3">
