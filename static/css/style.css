@@ -27,9 +27,15 @@
 }
 
 .post-img {
-    width: auto;
+    object-fit: cover;
+    /*width: auto;*/
     max-height: 450px;
     border-radius: 4%;
+}
+
+.index-img {
+    object-fit: cover;
+    max-height: 300px;
 }
 
 .wide {
