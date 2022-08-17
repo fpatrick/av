@@ -26,23 +26,22 @@
                         <form class="d-inline" action="{% url 'post_like' post.slug %}" method="post">
                             {% csrf_token %}
                             {% if liked %}
-                            <button type="submit" name="btn_like" value="{{post.slug}}" class="">
-                                <p>You liked this post</p>
-                                <i class="fas fa-heart fa-2xl"></i>
+                            <button type="submit" name="btn_like" value="{{post.slug}}" class="no-back">
+                                <span class="fw-lighter">You liked this post</span>
+                                <i class="fas fa-heart fa-2xl red-liked"></i>
                             </button>
                             {% else %}
-                            <button type="submit" name="btn_like" value="{{post.slug}}" class="">
-                                <p>Click to like</p>
-                                <i class="far fa-heart fa-2xl"></i>
+                            <button type="submit" name="btn_like" value="{{post.slug}}" class="no-back">
+                                <span class="fw-lighter">Click to like</span>
+                                <i class="far fa-heart fa-2xl red-liked"></i>
                             </button>
                             {% endif %}
                         </form>
                         {% else %}
-                        Login to like
-                        <span class="text-secondary"><i class="far fa-heart fa-2xl"></i></span>
+                        <span>Login to like</span>
+                        <span class="text-secondary"><i class="far fa-heart fa-2xl red-like"></i></span>
                         {% endif %}
                     </strong>
-
                 </div>
                 <div class="d-flex justify-content-between">
                     <p class="text-info"> {{ post.keywords }}</p>
@@ -57,20 +56,20 @@
                         <form class="d-inline" action="{% url 'post_like' post.slug %}" method="post">
                             {% csrf_token %}
                             {% if liked %}
-                            <button type="submit" name="btn_like" value="{{post.slug}}" class="">
-                                <p>You liked this post</p>
-                                <i class="fas fa-heart fa-2xl"></i>
+                            <button type="submit" name="btn_like" value="{{post.slug}}" class="no-back">
+                                <span class="fw-lighter">You liked this post</span>
+                                <i class="fas fa-heart fa-2xl red-liked"></i>
                             </button>
                             {% else %}
-                            <button type="submit" name="btn_like" value="{{post.slug}}" class="">
-                                <p>Click to like</p>
-                                <i class="far fa-heart fa-2xl"></i>
+                            <button type="submit" name="btn_like" value="{{post.slug}}" class="no-back">
+                                <span class="fw-lighter">Click to like</span>
+                                <i class="far fa-heart fa-2xl red-liked"></i>
                             </button>
                             {% endif %}
                         </form>
                         {% else %}
-                        Login to like
-                        <span class="text-secondary"><i class="far fa-heart fa-2xl"></i></span>
+                        <span>Login to like</span>
+                        <span class="text-secondary"><i class="far fa-heart fa-2xl red-like"></i></span>
                         {% endif %}
                     </strong>
                 </div>
