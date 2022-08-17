@@ -6,13 +6,13 @@
     <header>
         <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '';">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active ">
+                <li class="breadcrumb-item ">
 
-                    <span class="h4"><i class="fa-solid fa-fire-flame-curved fa-md"></i> Most Liked Posts</span>
+                    <a class="h4" href="{% url 'home' %}"><i class="fa-solid fa-fire-flame-curved fa-md"></i> Most Liked Posts</a>
                 </li>
                 <li class="h4">&nbsp/&nbsp</li>
-                <li class="breadcrumb-item>">
-                    <a class="h4" href="newest"><i class="fa-solid fa-angles-up fa-md"></i> Newest Posts</a>
+                <li class="breadcrumb-item active">
+                    <span class="h4"><i class="fa-solid fa-angles-up fa-md"></i> Newest Posts</span>
                 </li>
             </ol>
         </nav>
