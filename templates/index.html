@@ -25,8 +25,8 @@
                     {% for post in post_list %}
                     <div class="card bg-light mb-3 text-center">
                         <div class="row g-0">
-                            <div class="col-md-5 mt-4">
-                                <div class="image-container">
+                            <div class="col-md-5">
+                                <div class="image-container img-thumbnail mt-2 mb-2">
                                     {% if "placeholder" in post.featured_image.url %}
                                     <img class="rounded card-img-top"
                                          src="https://media.istockphoto.com/photos/back-view-photo-of-professional-female-hacker-picture-id1015143300?k=20&m=1015143300&s=612x612&w=0&h=6wp5IHqUO599BpsTTzYtNOt-NMmc1jbo6IzG7QFYA_0=">
@@ -39,11 +39,13 @@
                             <div class="col-md-7">
                                 <div class="card-body">
                                     <h5 class="card-title h3">{{ post.title }}</h5>
-                                    <p class="card-text"><small>
+                                    <p class="card-text mt-2">
+                                        <small>
                                         <span class="green-author"><i class="fa-solid fa-user"></i> {{ post.author }} &nbsp&nbsp</span>
                                         <span class="red-like"><i class="fa-solid fa-heart"></i> {{ post.number_of_likes }} &nbsp&nbsp</span>
                                         <span class="blue-date"><i class="fa-regular fa-calendar"></i> {{ post.created_on}}</span>
-                                    </small></p>
+                                        </small>
+                                    </p>
                                     <div class="limit-chars">
                                         <p class="card-text">{{ post.content | safe }}</p>
                                     </div>
@@ -69,10 +71,10 @@
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="btn btn-light">&laquo; PREV </a></li>
             {% endif %}
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            <li><a href="?page={{ page_obj.next_page_number }}" class="btn btn-light"> NEXT &raquo;</a></li>
 
             {% endif %}
         </ul>
