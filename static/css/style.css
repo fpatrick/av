@@ -82,3 +82,11 @@ a {
 a:hover {
     color: rgb(45, 94, 103);
 }
+
+.keywords {
+    color: rgb(110, 148, 31);
+}
+
+.form-control:focus{
+    border-color: rgb(102, 217, 239);
+}
