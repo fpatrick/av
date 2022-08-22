@@ -25,13 +25,13 @@ body {
     color: rgba(108, 153, 187, 0.5);
 }
 
-.btn-p {
+.btn-blog {
     color: white;
-    background-color: rgb(142, 142, 147, 0.9);
+    background-color: rgba(39, 40, 34, 0.5);
 }
-.btn-p:hover{
+.btn-blog:hover{
     color: white;
-    background-color: rgb(44, 44, 46);
+    background-color: rgba(39, 40, 34);
 }
 
 .post-img {
@@ -57,4 +57,28 @@ body {
 
 .title-spacing {
     letter-spacing: 3px;
+}
+
+.blog-bg {
+    background-color: rgba(39, 40, 34, 0.95);
+}
+
+.light-blog {
+    color: rgb(130, 133, 114);
+}
+
+.blue-blog {
+    color: rgb(102, 217, 239);
+}
+
+.green-blog {
+    color: rgb(166, 226, 46);
+}
+
+a {
+    color: rgb(102, 217, 239);
+}
+
+a:hover {
+    color: rgb(45, 94, 103);
 }
