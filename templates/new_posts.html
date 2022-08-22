@@ -39,11 +39,14 @@
                             <div class="col-md-7">
                                 <div class="card-body">
                                     <h5 class="card-title h3">{{ post.title }}</h5>
-                                    <p class="card-text"><small>
-                                        <span class="green-author"><i class="fa-solid fa-user"></i> {{ post.author }} &nbsp&nbsp</span>
-                                        <span class="red-like"><i class="fa-solid fa-heart"></i> {{ post.number_of_likes }} &nbsp&nbsp</span>
-                                        <span class="blue-date"><i class="fa-regular fa-calendar"></i> {{ post.created_on}}</span>
-                                    </small></p>
+                                    <p class="card-text">
+                                        <small class="border-top">
+                                            &nbsp
+                                            <span class="green-author"><i class="fa-solid fa-user"></i> {{ post.author }} &nbsp&nbsp</span>
+                                            <span class="red-like"><i class="fa-solid fa-heart"></i> {{ post.number_of_likes }} &nbsp&nbsp</span>
+                                            <span class="blue-date"><i class="fa-regular fa-calendar"></i> {{ post.created_on}}&nbsp</span>
+                                        </small>
+                                    </p>
                                     <div class="limit-chars">
                                         <p class="card-text">{{ post.content | safe }}</p>
                                     </div>
