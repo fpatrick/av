@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 # Custom added
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from .models import Post
+from .models import Post, Category
 from .forms import CommentForm
 from django.db.models import Count
 from django.views.generic import TemplateView
@@ -92,3 +92,20 @@ class PostLike(View):
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
+
+class CategoryPost(View):
+
+    def get(self, request, slug, *args, **kwargs):
+
+        queryset = Category.objects.all()
+        category = get_object_or_404(queryset, slug=slug)
+        queryset = Post.objects.all()
+        post = get_object_or_404(queryset, category='teste')
+
+        return render(
+            request,
+            "contact.html",
+            {
+                "post": post,
+            },
+        )

@@ -1,6 +1,6 @@
 from django.contrib import admin
 # Eu add abaixo
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -51,10 +51,14 @@ class CommentAdmin(admin.ModelAdmin):
             self.exclude = ('approved','post')
             return qs.filter(name=request.user)
 
-
-
     def disable_comments(self, request, queryset):
         queryset.update(approved=False)
 
     def enable_comments(self, request, queryset):
         queryset.update(approved=True)
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('category',)}
+    list_display = ('category',)

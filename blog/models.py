@@ -7,6 +7,14 @@ from cloudinary.models import CloudinaryField
 STATUS = ((0, 'Draft'), (1, 'Published'), (2, 'Disabled'))
 
 
+class Category(models.Model):
+    category = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.category
+
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
@@ -18,7 +26,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True, editable=False)
-    categories = models.CharField(max_length=200)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     keywords = models.CharField(max_length=200)
 
     class Meta:
@@ -46,13 +54,7 @@ class Comment(models.Model):
         return f'Comment {self.body} by {self.name}'
 
 
-# class Category(models.Model):
-#     name = models.CharField(max_length=50)
-#
-#     def __str__(self):
-#         return self.name
-#
-#
+
 # class Product(models.Model):
 #     label = models.CharField(max_length=50)
 #     description = models.CharField(max_length=200)
