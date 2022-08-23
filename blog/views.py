@@ -94,6 +94,7 @@ class PostLike(View):
 
 
 class CategoryPost(View):
+    paginate_by = 8
 
     def get(self, request, slug, *args, **kwargs):
         # queryset = Post.objects.filter(category='teste')
