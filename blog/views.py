@@ -96,16 +96,17 @@ class PostLike(View):
 class CategoryPost(View):
 
     def get(self, request, slug, *args, **kwargs):
+        # queryset = Post.objects.filter(category='teste')
+        # post = get_object_or_404(queryset)
 
-        queryset = Category.objects.all()
-        category = get_object_or_404(queryset, slug=slug)
-        queryset = Post.objects.all()
-        post = get_object_or_404(queryset, category='teste')
+        category = get_object_or_404(Category, slug=slug)
+        category_posts = Post.objects.filter(category=category)
 
         return render(
             request,
-            "contact.html",
+            "category_posts.html",
             {
-                "post": post,
+                "category": category,
+                "category_posts": category_posts,
             },
         )
