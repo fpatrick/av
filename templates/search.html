@@ -55,8 +55,9 @@
                 </div>
                 <div class="row">
                     {% endif %}
+                    {% empty %}
+                        <span class="h3">No results found.</span>
                     {% endfor %}
-
                 </div>
             </div>
             <!-- End of row -->

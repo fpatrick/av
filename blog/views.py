@@ -149,3 +149,4 @@ class SearchPost(generic.ListView):
         # Add what was searched to term variable inside template
         context['term'] = self.request.GET.get("search") or None
         return context
+
