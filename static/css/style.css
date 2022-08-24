@@ -3,7 +3,7 @@ body {
 }
 
 .limit-chars {
-    height: 15ch;
+    height: 20ch;
     overflow: hidden;
     /*white-space: nowrap;*/
     /*text-overflow: ellipsis;*/
@@ -43,7 +43,8 @@ body {
 
 .index-img {
     object-fit: cover;
-    max-height: 300px;
+    max-height: 250px;
+    max-width: 400px;
 }
 
 .wide {
@@ -94,3 +95,7 @@ a:hover {
 .form-control:focus{
     border-color: rgb(102, 217, 239);
 }
+
+/*.card {*/
+/*    height: 275px;*/
+/*}*/

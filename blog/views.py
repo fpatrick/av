@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from .models import Post, Category
 from .forms import CommentForm
 from django.db.models import Count
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 
 
 class PostList(generic.ListView):
@@ -111,3 +111,41 @@ class CategoryPost(View):
                 "category_posts": category_posts,
             },
         )
+
+
+# class SearchPost(View):
+#     paginate_by = 8
+#
+#     def get(self, request, search, *args, **kwargs):
+#         # queryset = Post.objects.filter(category='teste')
+#         # post = get_object_or_404(queryset)
+#
+#         post_list = Post.objects.filter(content__icontains=search)
+#
+#         return render(
+#             request,
+#             "search.html",
+#             {
+#                 "post_list": post_list,
+#                 "term": search,
+#             },
+#         )
+class SearchPost(generic.ListView):
+    model = Post
+    template_name = 'search.html'
+    paginate_by = 8
+
+    # Query
+    def get_queryset(self):
+        # Get what came from form with name=search
+        query = self.request.GET.get("search")
+        # Search inside post content for provided term, insensible case
+        post_list = Post.objects.filter(content__icontains=query)
+        return post_list
+
+    def get_context_data(self, **kwargs):
+        # Pass what returned from get_queryset to context variable
+        context = super(SearchPost, self).get_context_data(**kwargs)
+        # Add what was searched to term variable inside template
+        context['term'] = self.request.GET.get("search") or None
+        return context
