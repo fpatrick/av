@@ -14,6 +14,9 @@ from pathlib import Path
 #Eu add Following lines was edded by me
 import os
 import dj_database_url
+# Import messages to assign tags
+from django.contrib.messages import constants as messages
+# For heroku env var
 if os.path.isfile('env.py'):
     import env
 
@@ -63,6 +66,14 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+# Add msg tags based on bootstrap
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
