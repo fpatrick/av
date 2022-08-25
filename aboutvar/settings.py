@@ -30,13 +30,16 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#Eu editei a linha abaixo para colocar mmeu os.environ
+# Add secret env
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-#eu add dentro dos []
+# To summernote work with cross-origin resource sharing (CORS)
+x_FRAME_OPTIONS = 'SAMEORIGIN'
+
+# Add what hosts are allowed to run
 ALLOWED_HOSTS = ['aboutv.herokuapp.com', 'localhost', '127.0.0.1']
 
 
