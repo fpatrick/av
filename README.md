@@ -40,6 +40,12 @@ then analysed the viability for the project scope and made into a kanban board w
 * The font is provided by google fonts.
 * Summernote also apply a user chosen font to posts.
 
+### Design
+
+* Inspired by reddit
+* Less is more philosophy
+* Simple as possible, direct to the info (imagine someone google how to do something, land on the website and just wanting the info. )
+
 ## Main Features
 
 ### _Navbar_
