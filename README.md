@@ -16,6 +16,15 @@ Name meaning: About (Variable). The variable can be linux, gaming, news, etc.
 
 ## Development Choices
 
+### Wireframes
+
+Wireframes wouldn't be needed for such a simple design, but still it was made, so wouldn't forget the initial idea.
+
+<details>
+<summary>Click to see wireframe</summary>
+<img src="https://user-images.githubusercontent.com/39106404/186986669-52dc7623-6edb-448e-b203-20ffee173a71.png" />
+</details>
+
 ### User Stories and Agile
 
 Agile methodology was applied. A small group of potential users was interview to understand and gather their needs. It was 
