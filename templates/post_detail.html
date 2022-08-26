@@ -9,10 +9,10 @@
                 <br>
                 <div class="image-container">
                     {% if "placeholder" in post.featured_image.url %}
-                    <img class="d-block post-img mx-auto img-thumbnail card-img-top"
+                    <img alt="Lines of programming code" class="d-block post-img mx-auto img-thumbnail card-img-top"
                          src="https://cdn.windowsreport.com/wp-content/uploads/2020/12/Programming-101.jpg">
                     {% else %}
-                    <img class="d-block post-img mx-auto img-thumbnail card-img-top"
+                    <img alt="User added featured image" class="d-block post-img mx-auto img-thumbnail card-img-top"
                          src=" {{ post.featured_image.url }}">
                     {% endif %}
                 </div>
@@ -21,7 +21,7 @@
 
                 <div class="d-flex justify-content-between">
                     <small class="text-muted">Posted by <span class="fw-bold">{{ post.author }}</span> on {{ post.created_on}}</small>
-                    <strong>
+
                         {% if user.is_authenticated %}
                         <form class="d-inline" action="{% url 'post_like' post.slug %}" method="post">
                             {% csrf_token %}
@@ -41,7 +41,7 @@
                         <span class="fw-light">Login to like</span>
                         <span class="text-secondary"><i class="far fa-heart fa-2xl red-like"></i></span>
                         {% endif %}
-                    </strong>
+
                 </div>
                 <div class="d-flex justify-content-between">
                     <p class="fw-light"><span class="keywords"> {{ post.keywords }}</span></p>
@@ -51,7 +51,7 @@
                 <br><br>
                 <div class="d-flex justify-content-between">
                     <small class="text-muted">Author: {{ post.author }} | Category: {{ post.category }}.</small>
-                    <strong>
+
                         {% if user.is_authenticated %}
                         <form class="d-inline" action="{% url 'post_like' post.slug %}" method="post">
                             {% csrf_token %}
@@ -71,7 +71,7 @@
                         <span>Login to like</span>
                         <span class="text-secondary"><i class="far fa-heart fa-2xl red-like"></i></span>
                         {% endif %}
-                    </strong>
+
                 </div>
             </div>
         </div>

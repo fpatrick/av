@@ -28,10 +28,10 @@
                             <div class="col-md-5">
                                 <div class="image-container img-thumbnail mt-1 mb-1">
                                     {% if "placeholder" in post.featured_image.url %}
-                                    <img class="rounded index-img card-img-top"
+                                    <img alt="Hacker stretching himself in front of a linux terminal" class="rounded index-img card-img-top"
                                          src="https://media.istockphoto.com/photos/back-view-photo-of-professional-female-hacker-picture-id1015143300?k=20&m=1015143300&s=612x612&w=0&h=6wp5IHqUO599BpsTTzYtNOt-NMmc1jbo6IzG7QFYA_0=">
                                     {% else %}
-                                    <img class="card-img-top index-img rounded" src=" {{ post.featured_image.url }}">
+                                    <img alt="User added featured image" class="card-img-top index-img rounded" src=" {{ post.featured_image.url }}">
                                     {% endif %}
                                 </div>
                             </div>
