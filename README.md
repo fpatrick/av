@@ -2,13 +2,11 @@
 
 Name meaning: About (Variable). The variable can be linux, gaming, news, etc.
 
-**Live link: https://aboutv.herokuapp.com/**
-
 #### A reddit inspired blog where users can share knowledge about linux, home lab, self-hosting, gaming and other technology related hobbies.
 #### Open to anyone who wants to create an account, post freely and gain relevance by getting likes from other users.
 
 ![Screenshot 2022-08-26 at 16 31 48](https://user-images.githubusercontent.com/39106404/186940767-c76e2d14-32b7-4f2e-805a-f64d88fc5d87.png)
-
+**Live link: https://aboutv.herokuapp.com/**
 ### What are this project goals?
 
 * Provide a platform for tech-savvy people who would like to share their knowledge or learn something new.
@@ -158,7 +156,7 @@ It can be checked below:
 </details>
 
 #### HTML Checker W3C Validator - https://validator.w3.org
-Some html files were tested with one error; __The font element is obsolete__ due to how summernote insert html to posts. 
+Some html files were tested with one error; __The font element is obsolete__ due to how summernote insert html (fonts) to posts. I have no control over it.
 It can be checked below:
 
 <details>
