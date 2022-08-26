@@ -49,7 +49,7 @@
                                         </small>
                                     </p>
                                     <div class="limit-chars">
-                                        <p class="card-text">{{ post.content | safe }}</p>
+                                        <div class="card-text">{{ post.content | safe }}</div>
                                     </div>
                                     <a href="{% url 'post_detail' post.slug  %}" class="btn btn-blog mt-3">Read More</a>
                                 </div>
