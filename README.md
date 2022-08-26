@@ -157,13 +157,151 @@ It can be checked below:
 <img src="https://user-images.githubusercontent.com/39106404/186951318-6af5aedf-1914-45d9-a47e-4f990274d5ff.png" />
 </details>
 
-
-
-
+#### HTML Checker W3C Validator - https://validator.w3.org
+Some html files were tested with one error; __The font element is obsolete__ due to how summernote insert html to posts. 
+It can be checked below:
 
 <details>
-<summary>admin.py</summary>
-<img src="" />
+<summary>Index</summary>
+<img src="https://user-images.githubusercontent.com/39106404/186955808-d8a55ccc-3c32-4612-ad8c-7671c2dd339f.png" />
 </details>
 
+<details>
+<summary>Contact</summary>
+<img src="https://user-images.githubusercontent.com/39106404/186956447-0cc1753e-61bc-4d70-af9d-da2afe6fc155.png" />
+</details>
 
+<details>
+<summary>Category</summary>
+<img src="https://user-images.githubusercontent.com/39106404/186956538-5163c543-4057-4ee2-af92-70986a77bc61.png" />
+</details>
+
+<details>
+<summary>Newest Posts</summary>
+<img src="https://user-images.githubusercontent.com/39106404/186956605-52a83126-dde3-4b7a-8af0-675f3ae6d2e0.png" />
+</details>
+
+<details>
+<summary>Search</summary>
+<img src="https://user-images.githubusercontent.com/39106404/186956657-cbbf6882-3755-4ffb-a8de-bea3f32d45c2.png" />
+</details>
+
+#### Lighthouse Report
+
+<details>
+<summary>86 Performance due to render-blocking resources (such as cloudinary and gfonts)</summary>
+<img src="https://user-images.githubusercontent.com/39106404/186958249-eca1865e-01c0-4859-a864-bbc22e4dcf62.png" />
+</details>
+
+### Manual Testing
+
+
+| Page     | Action                | Expected                                               | Outcome |
+|----------|-----------------------|--------------------------------------------------------|---------|
+| Home     | Display               | Working navbar with database generated categories      | Pass    |
+| Home     | Display               | Display a list of most liked posts                     | Pass    |
+| Home     | Click newest posts    | Display a list of newest posts                         | Pass    |
+| Contact  | Click linkedin        | Redirect to linkedin on new tab                        | Pass    |
+| Contact  | Click email           | Redirect to email app ready to send a email            | Pass    |
+| Home     | Click category        | Open listing with all post related to the category     | Pass    |
+| Home     | Search word           | List post with keyword within its content              | Pass    |
+| Home     | Click Login           | Open on new tab login page with forms                  | Pass    |
+| Login    | Click sign in         | Sign in into account after filling correctly the forms | Pass    |
+| Home     | Click sign out        | Open sign out in same tab                              | Pass    |
+| Sign out | Click sign out        | Sign out of account successfully                       | Pass    |
+| Home     | Click sign up         | Open on new tab forms to create account                | Pass    |
+| Sign up  | Click sign up         | Successfully sign up                                   | Pass    |
+| Home     | Admin / Post          | Open admin panel with logged user access permissions   | Pass    |
+| Admin    | Manage comments       | Django admin is managing only user comments            | Pass    |
+| Admin    | Manage posts          | Django admin is managing only user posts               | Pass    |
+| Home     | Click footer linkedin | Open linkedin profile on new tab                       | Pass    |
+| Home     | Click read more       | Open specific post                                     | Pass    |
+| Post     | Click like            | A new like is added to the post                        | Pass    |
+| Post     | Submit comment        | New comment displayed on comments list                 | Pass    |
+|          |                       |                                                        |         |
+
+### Bugs
+
+No bugs could be found in the website to date.
+
+### Future Implementation
+
+* Add more categories to a post
+* Newsletter system
+* Automatic password recovery
+
+### Deployment
+ * Developed with __pycharm__
+
+Deployment Tutorial:
+
+1. Create Django project and app
+
+    - Install django using the command `pip3 install 'django' gunicorn`;
+    - Install supporting database libraries dj_database_url and psycopg2, using `pip3 install dj_database_url psycopg2`;
+    - Install Cloudinary library to upload the images, using `pip3 install dj3-cloudinary-storage`;
+    - Create the requirements.txt file using the command `pip3 freeze --local > requirements.txt`;
+    - Create Django project with the command `django-admin startproject project_name .`;
+    - Create Django app with the command `python3 manage.py startapp app_name`;
+    - Use the commands `python3 manage.py makemigrations` and `python3 manage.py migrate`;
+    - To test and run the project `python3 manage.py runserver`.
+
+2. Create Heroku app
+
+    - Open the heroku website and log into account
+    - Create a new app with the project name, chose the region Europe
+    - Open the Resources section, search for Heroku Postgres and select it
+    - Open the Settings section and then Config VARS, after initially add the keys needed to start development `DATABASE_URL`/`SECRET_KEY`/`CLOUDINARY_URL`;
+    - In Config VARS I add the following keys: `PORT` with a value of `8000` and `DISABLE_COLLECTSTATIC` with a value of `1`;
+
+3. Set up Django settings.py and necessary folders/files
+
+    - Set up to connect the environment variables
+    ```
+    from pathlib import Path
+    import os
+    import dj_database_url
+    from django.contrib.messages import constants as messages
+    if os.path.isfile('env.py'):
+        import env
+    ```
+    - Inside `INSTALLED_APPS` add necessary apps
+    
+    - For the database replace it with the following code
+    ```
+    DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+    ```
+    
+    - For the static files replace it with the following code to connect to Cloudinary
+    ```
+    STATIC_URL = '/static/'
+    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    MEDIA_URL = '/media/'
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    ```
+    - Create a Procfile and add the following text
+    ```
+    web: gunicorn autoclassic.wsgi
+    ```
+    
+4. Final deployment.
+
+    - In `settings.py` inside the Django project I change `DEBUG = False`;
+    - Also in the settings.py file I add `X_FRAME_OPTIONS = "SAMEORIGIN"`;
+    - In Heroku go back to Settings > Config VARS and removed the `DISABLE_COLLECTSTATIC` var;
+    - In Heroku navigate to Deploy section;
+    - Click connect to GitHub and search for repository for the project;
+    - Click on manual deploy to build the App;
+    - Click the View button, which redirect to the live site.
+
+### Credits
+
+* Code institute
+* Django documentation
+* Bootstrap documentation
+* Stackoverflow
