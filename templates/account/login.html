@@ -23,8 +23,9 @@
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                 {% endif %}
-                <!--  Deixei o recovery link abaixo-->
-                <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                <!--  The system password reset is to be implemented in the future -->
+<!--                <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>-->
+                <p>For security reasons please contact us if you forgot your password.</p>
                 <button class="btn btn-warning" type="submit">{% trans "Sign In" %}</button>
             </form>
         </div>
