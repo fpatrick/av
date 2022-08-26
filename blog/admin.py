@@ -48,7 +48,7 @@ class CommentAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         else:
-            self.exclude = ('approved','post')
+            self.exclude = ('approved', 'post')
             return qs.filter(name=request.user)
 
     def disable_comments(self, request, queryset):

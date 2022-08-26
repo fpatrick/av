@@ -5,13 +5,10 @@ from django.http import HttpResponseRedirect
 from .models import Post, Category
 from .forms import CommentForm
 from django.db.models import Count
-from django.views.generic import TemplateView, FormView
 
 
 class PostList(generic.ListView):
     model = Post
-    # queryset = Post.objects.filter(status=1).order_by('-created_on')
-    # Order by most liked posts
     queryset = Post.objects.filter(status=1) \
         .annotate(liked=Count('likes')) \
         .order_by('-liked')
@@ -97,9 +94,6 @@ class CategoryPost(View):
     paginate_by = 8
 
     def get(self, request, slug, *args, **kwargs):
-        # queryset = Post.objects.filter(category='teste')
-        # post = get_object_or_404(queryset)
-
         category = get_object_or_404(Category, slug=slug)
         category_posts = Post.objects.filter(category=category)
 
@@ -113,23 +107,6 @@ class CategoryPost(View):
         )
 
 
-# class SearchPost(View):
-#     paginate_by = 8
-#
-#     def get(self, request, search, *args, **kwargs):
-#         # queryset = Post.objects.filter(category='teste')
-#         # post = get_object_or_404(queryset)
-#
-#         post_list = Post.objects.filter(content__icontains=search)
-#
-#         return render(
-#             request,
-#             "search.html",
-#             {
-#                 "post_list": post_list,
-#                 "term": search,
-#             },
-#         )
 class SearchPost(generic.ListView):
     model = Post
     template_name = 'search.html'
@@ -149,4 +126,3 @@ class SearchPost(generic.ListView):
         # Add what was searched to term variable inside template
         context['term'] = self.request.GET.get("search") or None
         return context
-

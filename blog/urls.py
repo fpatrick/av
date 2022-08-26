@@ -10,7 +10,6 @@ urlpatterns = [
     path('search/', views.SearchPost.as_view(), name='search'),
     path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
     path('like/<slug:slug>', views.PostLike.as_view(), name='post_like'),
-    path('category/<slug:slug>/', views.CategoryPost.as_view(), name='category_post'),
-
-
+    path('category/<slug:slug>/', views.CategoryPost.as_view(),
+         name='category_post'),
 ]
