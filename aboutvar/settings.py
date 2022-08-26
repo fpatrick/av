@@ -36,7 +36,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 # To summernote work with cross-origin resource sharing (CORS)
-# x_FRAME_OPTIONS = 'SAMEORIGIN'
+x_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Add what hosts are allowed to run
 ALLOWED_HOSTS = ['aboutv.herokuapp.com', 'localhost', '127.0.0.1']
